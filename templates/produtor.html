@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pedidos</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      form {
+        margin-bottom: 20px;
+      }
+      
+      input[type="text"] {
+        padding: 6px;
+        width: 200px;
+      }
+      
+      input[type="submit"] {
+        padding: 6px 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Registro de Pedidos Concluídos</h1>
+    <h2>Bom dia meus produtores sz!</h2>
+
+    <form id="pedidoForm" method="POST" action="{% url 'pedidos:produtor' %}">
+      {% csrf_token %}
+      <label for="cliente">Nome do Cliente:</label>
+      <input type="text" id="cliente" name="cliente" required>
+      
+      <label for="id">Número do Pedido:</label>
+      <input type="text" id="id" name="id" required>
+      
+      <input type="submit" value="Registrar Pedido">
+    </form>
+
+    <table id="pedidosTable">
+      <thead>
+        <tr>
+          <th>Número do Pedido</th>
+          <th>Nome do Cliente</th>
+          <th>Data e Hora</th>
+          <th>Registrado Por</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        {% for pedido in pedidos %}
+          <tr>
+            <!-- <td>{{ pedido.id }}</td> -->
+            <td>{{ pedido.id }}</td>
+            <td>{{ pedido.cliente }}</td>
+            <td>{{ pedido.updated_at }}</td>
+            <td>{{ pedido.updated_by }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
