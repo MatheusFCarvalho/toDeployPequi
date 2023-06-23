@@ -32,7 +32,7 @@ staticfiles/
 
 # Ignorar arquivos e diretórios sensíveis
 secret_key.txt
-settings.py
+# settings.py
 
 # Ignorar arquivos de backup
 *~
